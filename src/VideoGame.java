@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VideoGame {
     private String name;
@@ -20,7 +22,10 @@ public class VideoGame {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(name.length() >= 2)
+            this.name = name;
+        else
+            throw new IllegalArgumentException("At least 2 letters");
     }
 
     public ArrayList<String> getGenre() {
@@ -36,7 +41,11 @@ public class VideoGame {
     }
 
     public void setAgeRating(String ageRating) {
-        this.ageRating = ageRating;
+        List<String> ageRatingValues = Arrays.asList("E","M","18+","T","R","13+","E10","G");
+        if (ageRatingValues.contains(ageRating))
+            this.ageRating = ageRating;
+        else
+            throw new IllegalArgumentException((ageRating + " is not valid. Options are : " + ageRatingValues));
     }
 
     public String getConsole() {
@@ -44,6 +53,10 @@ public class VideoGame {
     }
 
     public void setConsole(String console) {
-        this.console = console;
+        List<String> consoleNames = Arrays.asList("GameBoy", "PlayStation", "Sega", "PC");
+        if (consoleNames.contains(console))
+            this.console = console;
+        else
+            throw new IllegalArgumentException("Valid console names are: " + consoleNames);
     }
 }
